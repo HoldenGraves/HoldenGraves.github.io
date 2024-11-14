@@ -33,6 +33,16 @@
 
 <body class="board">
 	<!-- HTML for the box -->
+	 
+	<!-- Score-->
+	 <h1></h1>
+	<style>
+		h1 {
+			text-align: center;
+			font-family: "Cairo", sans-serif;
+			color: teal
+		}
+	</style>
 	<div class="box">?</div>
 
 	<script>
@@ -97,17 +107,19 @@
 			};
 			positionY = positionY + speedY;
 			console.log(positionY)
-
+			$('h1').text('Score : ' + points)
 			/* 
 			This Function will be called each time the box is clicked. Each time it is called,
 			it should increase the points total, increase the speed, and move the box to
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
+				$('h1').text('Score : ' + (points + 1))
 				positionX = Math.random() * 1000
 				points++;
 				changeBoxText(points)
 				speed = 3 * points + 10;
+				
 			}
 		})();
 	</script>
