@@ -26,24 +26,34 @@
 		.board {
 			height: 100vh;
 		}
+		img{
+			width: 60px;
+		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 
 </head>
-
 <body class="board">
-	<!-- HTML for the box -->
-	 
 	<!-- Score-->
 	 <h1></h1>
+	 
 	<style>
 		h1 {
 			text-align: center;
 			font-family: "Cairo", sans-serif;
-			color: teal
+			color: teal;
+			position: top;
+		}
+	</style>
+	<!-- HTML for the home icon -->
+	<a id="home-icon" href="https://HoldenGraves.github.io"><img src="https://cdn-icons-png.flaticon.com/512/61/61972.png" alt="Home"></a>
+	<style>
+		#home-icon {
+			position: center;
 		}
 	</style>
 	<div class="box">?</div>
+	
 
 	<script>
 		(function () {

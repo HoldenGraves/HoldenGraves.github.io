@@ -154,3 +154,6 @@ h2, h3 {
                           justify-content: center;
                         }
                     }
+                    #home-icon {
+                      list-style: none;
+                    }
