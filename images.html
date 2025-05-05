@@ -2,6 +2,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
+      <script src="jquery-3.7.1.min.js"></script>
         <title>Images</title>
       <style>
                   body {
@@ -262,7 +263,11 @@
             slideIndex++;
             if (slideIndex > slides.length) {slideIndex = 1}
             slides[slideIndex-1].style.display = "block";
-            setTimeout(showSlides, 5000); // Change image every 2 seconds
+            setTimeout(showSlides, 5000); // Change image every 5 seconds
           }
+          function plusSlides(x) {
+            slideIndex = slideIndex + x
+          }
+  
         </script>
 </html>   
