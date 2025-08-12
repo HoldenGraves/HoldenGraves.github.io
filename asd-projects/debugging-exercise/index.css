@@ -1,0 +1,14 @@
+#board {
+  background: black;
+  width: 650px;
+  height: 525px;
+  left: 0px;
+  top: 0px;
+}
+
+.ghost {
+  width: 50px;
+  height: 50px;
+  z-index: 100;
+  position: absolute;
+}
