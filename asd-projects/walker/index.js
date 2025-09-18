@@ -10,6 +10,7 @@ function runProgram(){
   // Constant Variables
   var FRAME_RATE = 60;
   var FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
+  
   var KEY = {
     ENTER: 13,
   LEFT: 65,
@@ -17,9 +18,21 @@ function runProgram(){
   RIGHT: 68,
   DOWN: 83,
   }
+  var KEY2 = {
+    LEFTROW : 37,
+    RIGHTROW : 39,
+    DOWNROW : 40,
+    UPROW : 38,
+  }
   var walker = {
     x : 0,
     y : 0, 
+    speedX : 0,
+    speedY : 0,
+  }
+  var walker2 = {
+    x : 390,
+    y : 390,
     speedX : 0,
     speedY : 0,
   }
@@ -37,6 +50,7 @@ function runProgram(){
   */
   $(document).on('keydown', handleKeyDown);                          
   $(document).on('keyup', handleKeyUp)
+  $('#walker').on('click', newColor)
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -50,7 +64,6 @@ function runProgram(){
     wallCollision()
     redrawGameItem()
   }
-  
   /* 
   This section is where you set up the event handlers for user input.
   For example, if you wanted to make an event handler for a click event, you should rename this function to 'handleClick', then write the code that should execute when the click event occurs.
@@ -75,6 +88,22 @@ if (event.which === KEY.DOWN) {
   console.log("down pressed");
    walker.speedY = 5
 }
+if (event.which === KEY2.LEFTROW) {
+  console.log("left pressed");
+  walker2.speedX = -5
+}
+if (event.which === KEY2.RIGHTROW) {
+  console.log("right pressed");
+   walker2.speedX = 5
+}
+if (event.which === KEY2.UPROW) {
+  console.log("up pressed");
+   walker2.speedY = -5
+}
+if (event.which === KEY2.DOWNROW) {
+  console.log("down pressed");
+   walker2.speedY = 5
+}
   }
 function handleKeyUp(event) {
   if (event.which === KEY.LEFT) {
@@ -93,17 +122,43 @@ if (event.which === KEY.DOWN) {
   console.log("down pressed");
    walker.speedY = 0
 }
+if (event.which === KEY2.LEFTROW) {
+  console.log("left pressed");
+  walker2.speedX = 0
+}
+if (event.which === KEY2.RIGHTROW) {
+  console.log("right pressed");
+   walker2.speedX = 0
+}
+if (event.which === KEY2.UPROW) {
+  console.log("up pressed");
+   walker2.speedY = 0
+}
+if (event.which === KEY2.DOWNROW) {
+  console.log("down pressed");
+   walker2.speedY = 0
+}
 }
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
+  function newColor() {
+    var randomColor = "#000000".replace(/0/g, function() {
+      return (~~(Math.random() * 16)).toString(16);
+    });
+    $('#walker').css('background-color', randomColor);
+  }
 function repositionGameItem() {
   walker.x = walker.x + walker.speedX;
   walker.y = walker.y + walker.speedY;
+  walker2.x = walker2.x + walker2.speedX;
+  walker2.y = walker2.y + walker2.speedY;
 }
 function redrawGameItem() {
   $("#walker").css("left", walker.x);
   $("#walker").css("top", walker.y);
+  $("#walker2").css("left", walker2.x);
+  $("#walker2").css("top", walker2.y);
 }
 function wallCollision() {
   if (walker.x < 0) {
@@ -117,6 +172,18 @@ function wallCollision() {
   }
   if (walker.y > $("#board").height() - 50) {
     walker.y -= walker.speedY
+  }
+  if (walker2.x < 0) {
+    walker2.x -= walker2.speedX
+  }
+   if (walker2.x > $("#board").width() - 50) {
+    walker2.x -= walker2.speedX;
+  }
+  if (walker2.y < 0) {
+    walker2.y -= walker2.speedY;
+  }
+  if (walker2.y > $("#board").height() - 50) {
+    walker2.y -= walker2.speedY
   }
 }
   function endGame() {
